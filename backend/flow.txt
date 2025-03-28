@@ -1,0 +1,26 @@
+database:
+    sqlite: using code
+    adminAccount: automatic creation
+    user:
+    admin:
+    subject:
+    chapter:
+    Quiz:
+    Questions:
+    Scores:
+    
+backend:
+    admin-routing: 
+        login: to-dashboard
+        manage-user: 
+            UpdateUser, DeleteUser
+        create a new subject:
+            various chapters: 
+                add quiz question
+
+    user:
+        login:
+        register:
+        choose the subject/chapter name:
+        Start the quiz
+        quizing history
