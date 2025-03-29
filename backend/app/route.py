@@ -13,25 +13,27 @@ def home():
     }
     return jsonify(data)
 
-@main.route('/login', methods=['GET', 'POST'])
+@main.route('/login', methods=['POST'])
 def login():
-    if request.method == 'POST':
-        data = request.get_json()
-        email = data.get('email')
-        password = data.get('password')
-        user = userLogin(email, password)
-        if user:
-            message = {
-                "status": "200",
-                "Message": "User Login Successful"
-            }
-            return jsonify(message)
+    data = request.get_json()
+    email = data.get('email')
+    password = data.get('password')
+    user = userLogin(email, password)
 
-        message = {
-            "status": "403",
-            "Message": "Please enter the correct password"
-        }
-        return jsonify(message)
+    if user:
+        return jsonify({
+            "status": "200",
+            "Message": "User Login Successful",
+            "user": {
+                "id": user[0],
+                "email": user[1],
+                "fullName": user[2],
+                "qualification": user[3]
+            }
+        })
+    else:
+        return jsonify({"status": "403", "Message": "Invalid email or password"})
+
     
 @main.route('/signup', methods=['GET', 'POST'])
 def signup():
